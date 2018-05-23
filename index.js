@@ -12,26 +12,39 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-// `client.on('...')` events and such below this point
 client.on('ready', () => {
     console.log('Ready!');
 });
 
 client.on('message', message => {
     if (message.author.bot) return;
+    
+    if (message.content.toLowerCase().includes("you suck") || message.content.toLowerCase().includes("u suck")) {
+      message.channel.send('no u');
+    }
 
     const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
+    
+    for (var i = 0; i < args.length; i++) {
+      var command = args[i];
+      command = command.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?<>/]/g,"");
+      //console.log("command is " + command);
+      //console.log("arraylength is " + args.length);
+      if (client.commands.has(command)) {
+        if (message.content.toLowerCase().includes(command)) {
+          client.commands.get(command).execute(message, args);
+        }
+      }
+    }
 
-    if (!client.commands.has(command)) return;
+    /*if (!client.commands.has(command)) return;
 
     try {
         client.commands.get(command).execute(message, args);
     }
     catch (error) {
-        console.error(error);
         message.reply('there was an error trying to execute that command!');
-    }
+    }*/
 });
 
 client.login(token);
