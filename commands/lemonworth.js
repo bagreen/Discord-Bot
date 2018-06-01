@@ -9,7 +9,7 @@ module.exports = {
         else if (message.author.username === 'SpruceMoose') {
           message.channel.send('You are worth 2:lemon:');
         }
-        else if (message.author.username === 'supremearmchaircommander') {
+        else if (message.author.username === 'SupremeArmchairCommander') {
           message.channel.send('You are worth 5:lemon:');
         }
     },
