@@ -1,6 +1,6 @@
 module.exports = {
     name: 'lemonworth',
-    description: 'lemon',
+    description: 'lemonworth',
     execute(message, args) {
         // send back "Pong." to the channel the message was sent in
         if (message.author.username === 'NuclearWalrus') {
